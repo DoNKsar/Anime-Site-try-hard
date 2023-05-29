@@ -1,0 +1,147 @@
+
+.main_about {
+  background-color: rgb(40, 13, 63) ;
+}
+
+.main_about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-md-6 {
+  flex-basis: 50%;
+}
+
+.order-md-2 {
+  order: 2;
+}
+
+.row img {
+  background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+
+.para1 {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  color: white;
+  padding-top: 75px !important;
+  padding-bottom: 75px !important;
+}
+
+.para2 {
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  color: white;
+  padding-top: 100px !important;
+}
+
+
+.main_about p{
+  color: white;
+  padding-top: 5%;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+ .img-container {
+  width: 95%;
+}
+
+
+@media (max-width: 575.98px) {
+  .main_about .row {
+    flex-direction: column;
+  }
+  .main_about .col-md-6 {
+    margin-bottom: 20px;
+  }
+  .main_about .order-md-2 {
+    order: -1;
+  }
+  .para1, .para2 {
+    text-align: center;
+    word-spacing: 1px;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .main_about .col-md-6 {
+    margin-bottom: 20px;
+  }
+  .main_about .order-md-2 {
+    order: 1;
+  }
+  .para1, .para2 {
+    text-align: center;
+    word-spacing: 1px;
+  }
+  .main_about p {
+    font-size: 15px;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .main_about .row {
+    flex-direction: row;
+  }
+  .main_about .col-md-6 {
+    margin-bottom: 20px;
+  }
+  .main_about .order-md-2 {
+    order: 1;
+  }
+  .para1, .para2 {
+    text-align: center;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .main_about .row {
+    flex-direction: row;
+  }
+  .main_about .col-md-6 {
+    margin-bottom: 20px;
+  }
+  .main_about .order-md-2 {
+    order: 1;
+  }
+  .para1, .para2 {
+    text-align: center;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .main_about .row {
+    flex-direction: row;
+  }
+  .main_about .col-md-6 {
+    margin-bottom: 0;
+  }
+  .main_about .order-md-2 {
+    order: 1;
+  }
+  .para1, .para2 {
+    text-align: center;
+  }
+}
+
+.footerLogo {
+	width: 100%;
+	max-width: 165px;
+  }
