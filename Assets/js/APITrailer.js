@@ -26,9 +26,6 @@ window.addEventListener("DOMContentLoaded", () => {
             playerElement.innerHTML = '';
             playerElement.appendChild(iframe);
   
-
-  
-            // Update other elements with the retrieved anime data as needed
           } else {
             titleElement.innerText = "No anime found";
           }

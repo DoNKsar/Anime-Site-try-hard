@@ -235,12 +235,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var videoPlayerDiv = document.querySelector('.anime__video__player');
 
   watchNowLink.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior of navigating to the "Video.html" page
+    event.preventDefault();
 
-    // Clear the session storage
     sessionStorage.clear();
 
-    // Create the YouTube iframe element
     var iframe = document.createElement('iframe');
     iframe.src = 'https://www.youtube.com/embed/Ciy0kf5EE3E';
     iframe.title = 'Official Trailer | The Eminence in Shadow – 2022 | English Sub';
@@ -248,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     iframe.allowFullscreen = true;
 
-    // Clear the existing content of the video player div and append the iframe
     videoPlayerDiv.innerHTML = '';
     videoPlayerDiv.appendChild(iframe);
   });

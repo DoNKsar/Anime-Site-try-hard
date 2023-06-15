@@ -1,8 +1,4 @@
 
-/*---------------------
-  Anime Details
------------------------*/
-
 .anime-details {
 	padding-top: 60px;
     background: rgb(40, 13, 63) !important;
@@ -104,16 +100,6 @@
 	padding-left: 18px;
 }
 
-/* .anime__details__widget ul li:before {
-	position: absolute;
-	left: 0;
-	top: 12px;
-	height: 6px;
-	width: 6px;
-	background: #b7b7b7;
-	content: "";
-} */
-
 .anime__details__widget ul li span {
 	color: #b7b7b7;
 	width: 115px;
@@ -179,18 +165,6 @@
 	margin-right: 20px;
 	position: relative;
 }
-
-/* .anime__review__item__pic:before {
-	position: absolute;
-	right: -30px;
-	top: 15px;
-	border-top: 15px solid transparent;
-	border-left: 15px solid #1d1e39;
-	content: "";
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-} */
 
 .anime__review__item__pic img {
 	height: 50px;

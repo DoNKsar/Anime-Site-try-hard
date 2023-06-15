@@ -21,8 +21,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const animeTitle = anime.title;
       titleElement.innerText = animeTitle;
 
-      // Update other elements with the retrieved anime data as needed
-
     } else {
       titleElement.innerText = "No anime found";
     }
