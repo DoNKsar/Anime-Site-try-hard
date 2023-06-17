@@ -14,7 +14,7 @@ let hero_s = $(".hero__slider");
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         smartSpeed: 1200,
-        autoHeight: true,
+        autoHeight: false,
         autoplay: true,
         mouseDrag: false
     });
@@ -137,6 +137,62 @@ $('.login-close-btn').on('click', function () {
  /*------------------
       ANIME API
   --------------------*/
+// const productTextElements = document.querySelectorAll(".product__item__text, .product__sidebar__rec__item__text, .product__sidebar__view__item");
+
+// window.addEventListener("DOMContentLoaded", () => {
+//   const titleLinks = document.querySelectorAll("h5 a");
+
+//   titleLinks.forEach(link => {
+//     link.addEventListener("click", event => {
+//       link.href = "/Assets/Pages_of_anime/Details.html"
+//       event.preventDefault();
+//       const clickedTitle = event.target.innerText;
+//       sessionStorage.setItem("clickedTitle", clickedTitle);
+//       // Redirect to the details.html page
+//       window.location.href = event.target.getAttribute("href");
+//     });
+//   });
+// });
+
+// productTextElements.forEach((element, index) => {
+//   const titleLink = element.querySelector("h5 a");
+
+//   if (titleLink) {
+//     const title = titleLink.innerText;
+//     const encodedTitle = encodeURIComponent(title);
+
+//     setTimeout(() => {
+//       fetch(`https://api.jikan.moe/v4/anime?q=${encodedTitle}&limit=1`)
+//         .then(response => response.json())
+//         .then(data => {
+//           console.log(data.data);
+//           const anime = data.data;
+
+
+
+//           const imgElements = document.querySelectorAll(".product__item__pic, .product__sidebar__view__item, .product__sidebar__rec__item__pic");
+//           const imgElement = imgElements[index];
+
+//           if (anime[0].images && anime[0].images.jpg) {
+//             imgElement.style.backgroundImage = `url(${anime[0].images.jpg.large_image_url})`;
+
+//             if (imgElement.tagName === "DIV") {
+//               const imgTag = imgElement.querySelector("img");
+//               if (imgTag) {
+//                 imgTag.src = anime[0].images.jpg.large_image_url;
+//               }
+//             }
+//           } else {
+//             imgElement.innerHTML = 'Image not available';
+//           }
+//         })
+//         .catch(error => console.log(error));
+//     }, index * 1000); // delay of 1 second
+//   }
+// });
+
+
+
 const productTextElements = document.querySelectorAll(".product__item__text, .product__sidebar__rec__item__text, .product__sidebar__view__item");
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -159,35 +215,46 @@ productTextElements.forEach((element, index) => {
 
   if (titleLink) {
     const title = titleLink.innerText;
-    const encodedTitle = encodeURIComponent(title);
+    const encodedTitle = title.replace(/[^a-zA-Z0-9]+/g, "-");
 
-    setTimeout(() => {
-      fetch(`https://api.jikan.moe/v4/anime?q=${encodedTitle}&limit=1`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data.data);
-          const anime = data.data;
+    fetch(`https://api.consumet.org/anime/gogoanime/info/${encodedTitle}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        const anime = data;
 
-
-
-          const imgElements = document.querySelectorAll(".product__item__pic, .product__sidebar__view__item, .product__sidebar__rec__item__pic");
-          const imgElement = imgElements[index];
-
-          if (anime[0].images && anime[0].images.jpg) {
-            imgElement.style.backgroundImage = `url(${anime[0].images.jpg.large_image_url})`;
-
-            if (imgElement.tagName === "DIV") {
-              const imgTag = imgElement.querySelector("img");
-              if (imgTag) {
-                imgTag.src = anime[0].images.jpg.large_image_url;
-              }
+        const genreListElements = element.querySelectorAll("ul li");
+        
+        if (anime.genres && anime.genres.length > 0) {
+          genreListElements.forEach((liElement, i) => {
+            if (i < anime.genres.length) {
+              liElement.textContent = anime.genres[i];
+            } else {
+              liElement.style.display = "none";
             }
-          } else {
-            imgElement.innerHTML = 'Image not available';
+          });
+        } else {
+          genreListElements.forEach((liElement) => {
+            liElement.style.display = "none";
+          });
+        }
+
+        const imgElements = document.querySelectorAll(".product__item__pic, .product__sidebar__view__item, .product__sidebar__rec__item__pic");
+        const imgElement = imgElements[index];
+
+        if (anime.image) {
+          imgElement.style.backgroundImage = `url(${anime.image})`;
+          if (imgElement.tagName === "DIV") {
+            const imgTag = imgElement.querySelector("img");
+            if (imgTag) {
+              imgTag.src = anime.image;
+            }
           }
-        })
-        .catch(error => console.log(error));
-    }, index * 1000); // delay of 1 second
+        } else {
+          imgElement.innerHTML = "Image not available";
+        }
+      })
+      .catch(error => console.log(error));
   }
 });
 
@@ -230,23 +297,23 @@ $('.follow-btn').on('click', function () {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  var watchNowLink = document.getElementById('watch-now-link');
-  var videoPlayerDiv = document.querySelector('.anime__video__player');
+// document.addEventListener('DOMContentLoaded', function() {
+//   var watchNowLink = document.getElementById('watch-now-link');
+//   var videoPlayerDiv = document.querySelector('.anime__video__player');
 
-  watchNowLink.addEventListener('click', function(event) {
-    event.preventDefault();
+//   watchNowLink.addEventListener('click', function(event) {
+//     event.preventDefault();
 
-    sessionStorage.clear();
+//     sessionStorage.clear();
 
-    var iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/Ciy0kf5EE3E';
-    iframe.title = 'Official Trailer | The Eminence in Shadow – 2022 | English Sub';
-    iframe.frameBorder = '0';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
+//     var iframe = document.createElement('iframe');
+//     iframe.src = 'https://www.youtube.com/embed/Ciy0kf5EE3E';
+//     iframe.title = 'Official Trailer | The Eminence in Shadow – 2022 | English Sub';
+//     iframe.frameBorder = '0';
+//     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+//     iframe.allowFullscreen = true;
 
-    videoPlayerDiv.innerHTML = '';
-    videoPlayerDiv.appendChild(iframe);
-  });
-});
+//     videoPlayerDiv.innerHTML = '';
+//     videoPlayerDiv.appendChild(iframe);
+//   });
+// });

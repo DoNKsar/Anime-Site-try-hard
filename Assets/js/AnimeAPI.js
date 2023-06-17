@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   const titleElement = document.getElementById("title__selector");
-  const clickedTitle = sessionStorage.getItem("clickedTitle");
+  const clickedTitle = sessionStorage.getItem("clickedTitle").replace(/[^a-zA-Z0-9]+/g, "-");
 
   if (clickedTitle) {
     titleElement.innerText = clickedTitle;
@@ -10,12 +10,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-    fetch(`https://api.jikan.moe/v4/anime?q=${clickedTitle}&limit=1`)
-      .then(response => response.json())
-      .then(data => {
-    const anime = data.data[0]
 
-
+    fetch(`https://api.consumet.org/anime/gogoanime/info/${clickedTitle}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      const anime = data;
 
     if (anime) {
       const animeTitle = anime.title;
@@ -27,10 +27,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
     const description = document.querySelector('.description');
-    if (anime.synopsis) {
-      description.innerHTML += anime.synopsis;
+    if (anime.description) {
+      description.innerHTML += anime.description;
+      
     } else {
-      description.innerHTML = 'Synopsis not available';
+      description.innerHTML = 'Description not available';
     }
     
     const TVtype = document.querySelector('.type ');
@@ -39,41 +40,34 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       TVtype.innerHTML = 'Type not available';
     }
-    
-    // const mainTitle = document.querySelector('.anime__details__title h3')
-    // if (anime.titles) {
-    //   mainTitle.innerHTML += anime.titles[0].title;
-    // } else {
-    //   mainTitle.innerHTML = 'Title not available';
-    // }
 
 
     const imgSet = document.querySelector('.anime__details__pic');
-    if (anime.images && anime.images.jpg) {
-      imgSet.style.backgroundImage = `url(${anime.images.jpg.large_image_url})`;
+    if (anime.image) {
+      imgSet.style.backgroundImage = `url(${anime.image})`;
     } else {
       imgSet.innerHTML = 'Image not available';
     }
 
 
     const secondTitle = document.querySelector('.anime__details__title span')
-    if (anime.title) {
-      secondTitle.innerHTML += anime.titles[1].title;
+    if (anime.otherName) {
+      secondTitle.innerHTML += anime.otherName;
     } else {
       secondTitle.innerHTML = 'Title not available';
     }
 
 
-    const studios = document.querySelector('.studios');
-    if (anime.studios && anime.studios.length > 0) {
-      studios.innerHTML += anime.studios[0].name;
+    const subOrDub = document.querySelector('.subOrDub');
+    if (anime.subOrDub) {
+      subOrDub.innerHTML += anime.subOrDub;
     } else {
-      studios.innerHTML = 'Studios not available';
+      subOrDub.innerHTML = 'Studios not available';
     }
     
     const airEd = document.querySelector('.aired');
-    if (anime.aired && anime.aired.string) {
-      airEd.innerHTML += anime.aired.string;
+    if (anime.releaseDate) {
+      airEd.innerHTML += anime.releaseDate;
     } else {
       airEd.innerHTML = 'Aired date not available';
     }
@@ -87,16 +81,16 @@ window.addEventListener("DOMContentLoaded", () => {
     
     const genre = document.querySelector('.genre');
     if (anime.genres && anime.genres.length > 0) {
-      genre.innerHTML += anime.genres.map(genre => genre.name).join(', ');
+      genre.innerHTML += anime.genres.slice(0, 3).join(', ');
     } else {
       genre.innerHTML = 'Genres not available';
     }
     
-    const scores = document.querySelector('.scores');
-    if (anime.score) {
-      scores.innerHTML += anime.score;
+    const episodes = document.querySelector('.episodes');
+    if (anime.totalEpisodes) {
+      episodes.innerHTML += anime.totalEpisodes;
     } else {
-      scores.innerHTML = 'Score not available';
+      episodes.innerHTML = 'Score not available';
     }
     
     const ranks = document.querySelector('.rank');
@@ -115,6 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
    });
+
 
   //  $(window).on('load', function () {
   //   $('.filter__controls li').on('click', function () {
