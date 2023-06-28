@@ -52,7 +52,7 @@ $(".search-close-switch").on("click", function () {
      HAMBURGER NAV
   --------------------*/
 $(document).ready(function () {
-  var trigger = $(".hamburger"),
+  let trigger = $(".hamburger"),
     overlay = $(".overlay"),
     isClosed = false;
 
@@ -419,6 +419,6 @@ function getRandomNumber(min, max) {
 
 function getMinutesAgo(date) {
   const now = new Date();
-  const diff = (now - date) / 1000; // Difference in seconds
-  return Math.floor(diff / 60); // Convert to minutes
+  const diff = (now - date) / 1000; // seconds
+  return Math.floor(diff / 60); // minutes
 }

@@ -1234,7 +1234,7 @@ ol {
 	border-radius: 50px;
 	display: inline-block;
 	position: relative;
-	right: 11%;
+	right: 18%;
 }
 
 .product__item__text h5 a {
@@ -1393,6 +1393,7 @@ ol {
 	.box__container {
 		height: 28%;
 	}
+
 }
 
 /* Wide Mobile = 480px */
@@ -1430,6 +1431,12 @@ ol {
 
 	}
 
+
+	.product__item__text ul li {
+		position: relative;
+		right: 9%;
+	}
+
 }
 
 @media only screen and (min-width: 280px) and (max-width: 360px) {
@@ -1458,5 +1465,10 @@ ol {
 
 	.box__container {
 		height: auto;
+	}
+
+	.product__item__text ul li {
+		position: relative;
+		right: 14%;
 	}
 }
