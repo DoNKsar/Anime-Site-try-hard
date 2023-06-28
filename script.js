@@ -268,18 +268,16 @@ const productTextElements = document.querySelectorAll(
 );
 const epElements = document.querySelectorAll(".product__item__pic .ep , .ep");
 
-window.addEventListener("DOMContentLoaded", () => {
-  const titleLinks = document.querySelectorAll("h5 a");
+const titleLinks = document.querySelectorAll("h5 a");
 
-  titleLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      link.href = "/Assets/Pages_of_anime/Details.html";
-      event.preventDefault();
-      const clickedTitle = event.target.innerText;
-      sessionStorage.setItem("clickedTitle", clickedTitle);
-      // Redirect to the details.html page
-      window.location.href = event.target.getAttribute("href");
-    });
+titleLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    link.href = "/Assets/Pages_of_anime/Details.html";
+    event.preventDefault();
+    const clickedTitle = event.target.innerText;
+    sessionStorage.setItem("clickedTitle", clickedTitle);
+    // Redirect to the details.html page
+    window.location.href = event.target.getAttribute("href");
   });
 });
 
